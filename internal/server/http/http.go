@@ -41,7 +41,31 @@ func initRouter(e *bm.Engine) {
 	g := e.Group("/go-skeleton")
 	{
 		g.GET("/start", howToStart)
+		g.GET("/pingmc", pingMC)
+		g.GET("/pingredis", pingRedis)
 	}
+}
+
+func pingMC(ctx *bm.Context) {
+	if err := svc.PingMC(ctx); err != nil {
+		log.Error("ping error(%v)", err)
+		ctx.AbortWithStatus(http.StatusServiceUnavailable)
+	}
+	k := &model.Kratos{
+		Hello: "MC 大法好 !!!",
+	}
+	ctx.JSON(k, nil)
+}
+
+func pingRedis(ctx *bm.Context) {
+	if err := svc.PingRedis(ctx); err != nil {
+		log.Error("ping error(%v)", err)
+		ctx.AbortWithStatus(http.StatusServiceUnavailable)
+	}
+	k := &model.Kratos{
+		Hello: "REDIS 大法好 !!!",
+	}
+	ctx.JSON(k, nil)
 }
 
 func ping(ctx *bm.Context) {

@@ -67,23 +67,23 @@ func (d *Dao) Close() {
 
 // Ping ping the resource.
 func (d *Dao) Ping(ctx context.Context) (err error) {
-	if err = d.pingMC(ctx); err != nil {
+	if err = d.PingMC(ctx); err != nil {
 		return
 	}
-	if err = d.pingRedis(ctx); err != nil {
+	if err = d.PingRedis(ctx); err != nil {
 		return
 	}
 	return d.db.Ping(ctx)
 }
 
-func (d *Dao) pingMC(ctx context.Context) (err error) {
+func (d *Dao) PingMC(ctx context.Context) (err error) {
 	if err = d.mc.Set(ctx, &memcache.Item{Key: "ping", Value: []byte("pong"), Expiration: 0}); err != nil {
 		log.Error("conn.Set(PING) error(%v)", err)
 	}
 	return
 }
 
-func (d *Dao) pingRedis(ctx context.Context) (err error) {
+func (d *Dao) PingRedis(ctx context.Context) (err error) {
 	conn := d.redis.Get(ctx)
 	defer conn.Close()
 	if _, err = conn.Do("SET", "ping", "pong"); err != nil {

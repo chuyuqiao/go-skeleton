@@ -40,9 +40,18 @@ func (s *Service) SayHello(ctx context.Context, req *pb.HelloReq) (reply *empty.
 // Ping ping the resource.
 func (s *Service) Ping(ctx context.Context) (err error) {
 	return s.dao.Ping(ctx)
+
 }
 
 // Close close the resource.
 func (s *Service) Close() {
 	s.dao.Close()
+}
+
+func (s *Service) PingMC(ctx context.Context) (err error) {
+	return s.dao.PingMC(ctx)
+}
+
+func (s *Service) PingRedis(ctx context.Context) (err error) {
+	return s.dao.PingRedis(ctx)
 }
