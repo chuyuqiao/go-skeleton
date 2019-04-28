@@ -1,4 +1,4 @@
 # go-skeleton
 
 ## 项目简介
-1.
+1. 基于https://github.com/bilibili/kratos生成的骨架项目
