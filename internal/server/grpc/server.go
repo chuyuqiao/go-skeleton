@@ -1,10 +1,10 @@
 package grpc
 
 import (
-	"go-skeleton/internal/service"
-	pb "go-skeleton/api"
 	"github.com/bilibili/kratos/pkg/conf/paladin"
 	"github.com/bilibili/kratos/pkg/net/rpc/warden"
+	pb "go-skeleton/api"
+	"go-skeleton/internal/service"
 )
 
 // New new a grpc server.

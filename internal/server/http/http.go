@@ -38,7 +38,7 @@ func New(s *service.Service) (engine *bm.Engine) {
 
 func initRouter(e *bm.Engine) {
 	e.Ping(ping)
-	g := e.Group("/kratos-demo")
+	g := e.Group("/go-skeleton")
 	{
 		g.GET("/start", howToStart)
 	}
@@ -58,4 +58,3 @@ func howToStart(c *bm.Context) {
 	}
 	c.JSON(k, nil)
 }
-

@@ -8,11 +8,11 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/bilibili/kratos/pkg/conf/paladin"
+	"github.com/bilibili/kratos/pkg/log"
 	"go-skeleton/internal/server/grpc"
 	"go-skeleton/internal/server/http"
 	"go-skeleton/internal/service"
-	"github.com/bilibili/kratos/pkg/conf/paladin"
-	"github.com/bilibili/kratos/pkg/log"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 	}
 	log.Init(nil) // debug flag: log.dir={path}
 	defer log.Close()
-	log.Info("kratos-demo start")
+	log.Info("go-skeleton start")
 	svc := service.New()
 	grpcSrv := grpc.New(svc)
 	httpSrv := http.New(svc)
@@ -37,7 +37,7 @@ func main() {
 			defer cancel()
 			grpcSrv.Shutdown(ctx)
 			httpSrv.Shutdown(ctx)
-			log.Info("kratos-demo exit")
+			log.Info("go-skeleton exit")
 			svc.Close()
 			time.Sleep(time.Second)
 			return

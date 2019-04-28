@@ -3,10 +3,10 @@ package service
 import (
 	"context"
 	"fmt"
-	"go-skeleton/internal/dao"
 
-	pb "go-skeleton/api"
 	"github.com/bilibili/kratos/pkg/conf/paladin"
+	pb "go-skeleton/api"
+	"go-skeleton/internal/dao"
 
 	"github.com/golang/protobuf/ptypes/empty"
 )
